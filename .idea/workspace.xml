@@ -1,11 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="c87500fc-6774-4c70-9330-44da005aa2b1" name="Changes" comment="" />
+    <list default="true" id="c87500fc-6774-4c70-9330-44da005aa2b1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Factory/FlightFactory/Flight.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Factory/FlightFactory/FlightFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Factory/TicketFactory/AirlineTicket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Factory/TicketFactory/BusinessTicket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Factory/TicketFactory/BusinessTicketFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Factory/TicketFactory/EconomyTicket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Factory/TicketFactory/EconomyTicketFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Factory/TicketFactory/TicketFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Singleton/AirportDispatcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Strategy/CardPayment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Strategy/CashPayment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Strategy/PaymentContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Strategy/PaymentStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Strategy/TransferPayment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -14,7 +43,9 @@
   "associatedIndex": 0
 }]]></component>
   <component name="ProjectId" id="2XwhXGmq8J64sWtR7HMhcWcsugU" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -23,8 +54,14 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/Wave/IdeaProjects/SDP_Final/src/Main.java",
     "vue.rearranger.settings.migration": "true"
   }
@@ -37,19 +74,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1699546089135</updated>
-      <workItem from="1699546090164" duration="1000" />
+      <workItem from="1699546090164" duration="2874000" />
     </task>
     <servers />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>
