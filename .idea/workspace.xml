@@ -5,23 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c87500fc-6774-4c70-9330-44da005aa2b1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Factory/FlightFactory/Flight.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Factory/FlightFactory/FlightFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Factory/TicketFactory/AirlineTicket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Factory/TicketFactory/BusinessTicket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Factory/TicketFactory/BusinessTicketFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Factory/TicketFactory/EconomyTicket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Factory/TicketFactory/EconomyTicketFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Factory/TicketFactory/TicketFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Singleton/AirportDispatcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Strategy/CardPayment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Strategy/CashPayment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Strategy/PaymentContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Strategy/PaymentStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Strategy/TransferPayment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Observer/Observer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Observer/Passenger.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Observer/Subject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Factory/FlightFactory/Flight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory/FlightFactory/Flight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Factory/FlightFactory/FlightFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory/FlightFactory/FlightFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +63,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1699546089135</updated>
-      <workItem from="1699546090164" duration="2874000" />
+      <workItem from="1699546090164" duration="4170000" />
     </task>
     <servers />
   </component>
