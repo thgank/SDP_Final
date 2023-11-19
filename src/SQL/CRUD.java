@@ -9,7 +9,7 @@ public class CRUD {
     }
     private static final String DB_URL = "jdbc:postgresql://localhost:5432/sdp_final";
     private static final String USERNAME = "postgres";
-    private static final String PASSWORD = "mercytop38";
+    private static final String PASSWORD = "password";
     private static void createUser(String name, String password) {
         try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD)) {
             // Check if the user already exists

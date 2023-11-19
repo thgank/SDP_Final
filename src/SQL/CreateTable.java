@@ -8,7 +8,7 @@ public class CreateTable {
     public static void main(String[] args) {
         String dbUrl = "jdbc:postgresql://localhost:5432/sdp_final";
         String username = "postgres";
-        String password = "mercytop38";
+        String password = "password";
 
         try (Connection conn = DriverManager.getConnection(dbUrl, username, password)) {
             if (conn != null) {
