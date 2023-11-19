@@ -7,6 +7,8 @@ import Strategy_and_Adapter.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.AbstractMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -36,9 +38,12 @@ public class Main {
                 break; // Finish purchasing flights
             }
 
-            Flight chosenFlight = getFlightByChoice(flightChoice, totalPriceForTicket);
+            Map.Entry<Flight, Integer> result = getFlightByChoice(flightChoice, totalPriceForTicket);
+            totalPriceForTicket = result.getValue();
+            Flight chosenFlight = result.getKey();
 
-            TicketFactory ticketFactory = chooseTicketType(chosenFlight.getDescription(), totalPriceForTicket);
+            totalPriceForTicket = chooseTicketType(chosenFlight.getDescription(), totalPriceForTicket);
+            TicketFactory ticketFactory = (totalPriceForTicket == 0) ? new EconomyTicketFactory() : new BusinessTicketFactory();
 
             AirlineTicket ticket = createTicket(ticketFactory);
             totalPriceForTicket = addDecorators(ticket, totalPriceForTicket);
@@ -60,10 +65,10 @@ public class Main {
         return scanner.nextInt();
     }
 
-    private static Flight getFlightByChoice(int flightChoice, int totalPriceForTicket) {
+    private static Map.Entry<Flight, Integer> getFlightByChoice(int flightChoice, int totalPriceForTicket) {
         Flight chosenFlight;
-        // Create a Flight using the FlightFactory
         FlightFactory flightFactory = new FlightFactory();
+
         switch (flightChoice) {
             case 1 -> {
                 chosenFlight = flightFactory.createFlight("Flight A");
@@ -83,30 +88,34 @@ public class Main {
                 return null; // Unreachable, but needed for compilation
             }
         }
-        return chosenFlight;
+
+        return new AbstractMap.SimpleEntry<>(chosenFlight, totalPriceForTicket);
     }
 
-    private static TicketFactory chooseTicketType(String flightDescription, int totalPriceForTicket) {
+
+
+
+    private static int chooseTicketType(String flightDescription, int totalPriceForTicket) {
         System.out.println("Choose ticket type for " + flightDescription +
                 ": 1. Economy (+$0), 2. Business (+$100)");
         int ticketType = scanner.nextInt();
 
-        TicketFactory ticketFactory;
         switch (ticketType) {
-            case 1 -> ticketFactory = new EconomyTicketFactory();
-            case 2 -> {
-                ticketFactory = new BusinessTicketFactory();
+            case 1:
+                // No additional cost for Economy ticket
+                break;
+            case 2:
                 totalPriceForTicket += 100;
-            }
-            default -> {
+                break;
+            default:
                 System.out.println("Invalid choice. Exiting...");
                 System.exit(1);
-                return null; // Unreachable, but needed for compilation
-            }
+                break; // Unreachable, but needed for compilation
         }
 
-        return ticketFactory;
+        return totalPriceForTicket;
     }
+
 
     private static AirlineTicket createTicket(TicketFactory ticketFactory) {
         return ticketFactory.createTicket();

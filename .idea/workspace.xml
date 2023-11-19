@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c87500fc-6774-4c70-9330-44da005aa2b1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/postgresql_42_6_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PostgreSQLExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SQL/CRUD.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SQL/CreateTable.java" afterDir="false" />
+    <list default="true" id="c87500fc-6774-4c70-9330-44da005aa2b1" name="Changes" comment="(^•ω•＾)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SDP_Final.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SDP_Final.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,14 +92,33 @@
       <option name="project" value="LOCAL" />
       <updated>1700416779592</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="(^•ω•＾)">
+      <created>1700419857916</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1700419857916</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="hehe" />
-    <option name="LAST_COMMIT_MESSAGE" value="hehe" />
+    <MESSAGE value="(^•ω•＾)" />
+    <option name="LAST_COMMIT_MESSAGE" value="(^•ω•＾)" />
   </component>
 </project>
