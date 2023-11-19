@@ -5,4 +5,8 @@ public class Flight {
     public Flight(String flightDetails){
         this.flightDetails=flightDetails;
     }
+
+    public String getDescription() {
+        return flightDetails;
+    }
 }
