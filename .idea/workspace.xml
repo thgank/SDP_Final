@@ -5,33 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c87500fc-6774-4c70-9330-44da005aa2b1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/CreateDatabaseFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/TicketFactory/CinemaDecorator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/TicketFactory/DecoratorApplier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/TicketFactory/FoodDecorator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/TicketFactory/MusicDecorator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/TicketFactory/TicketDecorator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Singleton/FlightInformationSystem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Strategy_and_Adapter/CombinedPaymentAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Strategy_and_Adapter/CombinedPaymentStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Factory/FlightFactory/Flight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/FlightFactory/Flight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Factory/FlightFactory/FlightFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/FlightFactory/FlightFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Factory/TicketFactory/AirlineTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/TicketFactory/AirlineTicket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Factory/TicketFactory/BusinessTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/TicketFactory/BusinessTicket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Factory/TicketFactory/BusinessTicketFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/TicketFactory/BusinessTicketFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Factory/TicketFactory/EconomyTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/TicketFactory/EconomyTicket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Factory/TicketFactory/EconomyTicketFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/TicketFactory/EconomyTicketFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Factory/TicketFactory/TicketFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/TicketFactory/TicketFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Factory_and_Decorator/FlightFactory/Flight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/FlightFactory/Flight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Observer/FlightUpdates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Observer/FlightUpdates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Observer/Passenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Observer/Passenger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Strategy/CardPayment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Strategy_and_Adapter/CardPayment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Strategy/CashPayment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Strategy_and_Adapter/CashPayment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Strategy/PaymentContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Strategy_and_Adapter/PaymentContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Strategy/PaymentStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Strategy_and_Adapter/PaymentStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Strategy/TransferPayment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Strategy_and_Adapter/TransferPayment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +25,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -60,23 +39,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Wave/IdeaProjects/SDP_Final",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/Wave/IdeaProjects/SDP_Final/src/Main.java",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Wave/IdeaProjects/SDP_Final/src/Main.java&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -86,8 +64,6 @@
       <option name="presentableId" value="Default" />
       <updated>1699546089135</updated>
       <workItem from="1699546090164" duration="4170000" />
-      <workItem from="1699800130821" duration="171000" />
-      <workItem from="1700403763195" duration="7902000" />
     </task>
     <servers />
   </component>
