@@ -1,4 +1,4 @@
-package Strategy;
+package Strategy_and_Adapter;
 
 public class TransferPayment implements PaymentStrategy{
 

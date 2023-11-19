@@ -5,13 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c87500fc-6774-4c70-9330-44da005aa2b1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/CreateDatabaseFile.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/TicketFactory/CinemaDecorator.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/TicketFactory/DecoratorApplier.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/TicketFactory/FoodDecorator.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/TicketFactory/MusicDecorator.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/TicketFactory/TicketDecorator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Observer/FlightInformationSystem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Singleton/FlightInformationSystem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Strategy_and_Adapter/CombinedPaymentAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Strategy_and_Adapter/CombinedPaymentStrategy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Factory/FlightFactory/Flight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/FlightFactory/Flight.java" afterDir="false" />
@@ -22,8 +24,14 @@
       <change beforePath="$PROJECT_DIR$/src/Factory/TicketFactory/EconomyTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/TicketFactory/EconomyTicket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Factory/TicketFactory/EconomyTicketFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/TicketFactory/EconomyTicketFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Factory/TicketFactory/TicketFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory_and_Decorator/TicketFactory/TicketFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Observer/FlightUpdates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Observer/FlightUpdates.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Observer/Passenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Observer/Passenger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Strategy/CardPayment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Strategy_and_Adapter/CardPayment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Strategy/CashPayment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Strategy_and_Adapter/CashPayment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Strategy/PaymentContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Strategy_and_Adapter/PaymentContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Strategy/PaymentStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Strategy_and_Adapter/PaymentStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Strategy/TransferPayment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Strategy_and_Adapter/TransferPayment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,8 +41,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -79,7 +87,7 @@
       <updated>1699546089135</updated>
       <workItem from="1699546090164" duration="4170000" />
       <workItem from="1699800130821" duration="171000" />
-      <workItem from="1700403763195" duration="6964000" />
+      <workItem from="1700403763195" duration="7902000" />
     </task>
     <servers />
   </component>
