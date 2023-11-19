@@ -1,4 +1,4 @@
-package Factory.TicketFactory;
+package Factory_and_Decorator.TicketFactory;
 
 public class BusinessTicket implements AirlineTicket{
 
@@ -10,5 +10,9 @@ public class BusinessTicket implements AirlineTicket{
     @Override
     public void cancel() {
         System.out.println("Cancelling a Business Ticket.");
+    }
+    @Override
+    public String getDescription() {
+        return "Ticket Description: Business Ticket";
     }
 }

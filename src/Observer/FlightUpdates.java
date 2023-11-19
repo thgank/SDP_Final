@@ -1,10 +1,15 @@
 package Observer;
 import java.util.List;
 import java.util.ArrayList;
-public class FlightUpdates implements Subject{
-    private List<Observer> observers = new ArrayList<>();
 
-    public void addFlight(String flightDetails){
+public class FlightUpdates implements Subject {
+    private List<Observer> observers;
+
+    public FlightUpdates() {
+        observers = new ArrayList<>();
+    }
+
+    public void addFlight(String flightDetails) {
         notifyObservers(flightDetails);
     }
 
@@ -20,7 +25,7 @@ public class FlightUpdates implements Subject{
 
     @Override
     public void notifyObservers(String flightDetails) {
-        for(Observer observer : observers){
+        for (Observer observer : observers) {
             observer.update(flightDetails);
         }
     }

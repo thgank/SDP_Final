@@ -9,6 +9,6 @@ public class Passenger implements Observer{
 
     @Override
     public void update(String flightDetails) {
-        System.out.println(name + "received an update");
+        System.out.println(name + " received an update");
     }
 }

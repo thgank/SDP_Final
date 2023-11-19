@@ -1,4 +1,4 @@
-package Factory.FlightFactory;
+package Factory_and_Decorator.FlightFactory;
 
 public class Flight {
     private String flightDetails;
