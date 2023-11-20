@@ -1,4 +1,4 @@
-package Factory_and_Decorator.TicketFactory;
+package Factory_and_Decorator;
 
 public class MusicDecorator implements TicketDecorator {
     protected AirlineTicket decoratedTicket;
@@ -27,5 +27,10 @@ public class MusicDecorator implements TicketDecorator {
         } else {
             return baseDescription + ", music access";
         }
+    }
+
+    @Override
+    public double getCost() {
+        return decoratedTicket.getCost()+10;
     }
 }

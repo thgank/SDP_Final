@@ -1,4 +1,4 @@
-package Factory_and_Decorator.TicketFactory;
+package Factory_and_Decorator;
 
 public class BusinessTicketFactory implements TicketFactory{
     @Override

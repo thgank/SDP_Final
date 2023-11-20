@@ -1,9 +1,10 @@
-import Factory_and_Decorator.FlightFactory.Flight;
-import Factory_and_Decorator.FlightFactory.FlightFactory;
+import Factory_and_Decorator.*;
 import Factory_and_Decorator.TicketFactory.*;
+import Observer.Passenger;
 import Singleton.FlightInformationSystem;
 import Observer.FlightUpdates;
 import Strategy_and_Adapter.*;
+import SQL.CRUD;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,172 +13,299 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
+    private static FlightUpdates flightUpdates = new FlightUpdates();
+    static FlightInformationSystem infoSystem = FlightInformationSystem.getInstance();
     static Scanner scanner = new Scanner(System.in);
-    static int totalPriceForTicket = 0;
 
     public static void main(String[] args) {
-        FlightUpdates flightUpdates = new FlightUpdates();
-        FlightInformationSystem infoSystem = FlightInformationSystem.getInstance();
-
-        infoSystem.startMonitoringFlights(flightUpdates);
-        infoSystem.showUpdatedFlights();
-
-        PaymentContext paymentContext = new PaymentContext();
-
-        // Create combined payment adapter
-        CombinedPaymentAdapter combinedPaymentAdapter = new CombinedPaymentAdapter();
-
-        // Create a list to store purchased flights and their total amounts
-        List<Flight> purchasedFlights = new ArrayList<>();
-
-        // Allow the user to purchase multiple flights
-        while (true) {
-            totalPriceForTicket = 0;
-            int flightChoice = chooseFlight();
-            if (flightChoice == 4) {
-                break; // Finish purchasing flights
-            }
-
-            Map.Entry<Flight, Integer> result = getFlightByChoice(flightChoice, totalPriceForTicket);
-            totalPriceForTicket = result.getValue();
-            Flight chosenFlight = result.getKey();
-
-            totalPriceForTicket = chooseTicketType(chosenFlight.getDescription(), totalPriceForTicket);
-            TicketFactory ticketFactory = (totalPriceForTicket == 0) ? new EconomyTicketFactory() : new BusinessTicketFactory();
-
-            AirlineTicket ticket = createTicket(ticketFactory);
-            totalPriceForTicket = addDecorators(ticket, totalPriceForTicket);
-
-            PaymentStrategy paymentStrategy = choosePaymentStrategy();
-            paymentContext.setPaymentStrategy(paymentStrategy);
-
-            ticket.book();
-            combinedPaymentAdapter.addPaymentStrategy(paymentStrategy, totalPriceForTicket);
-
-            purchasedFlights.add(chosenFlight);
-        }
-
-        paymentContext.processCombinedPayment(combinedPaymentAdapter);
+        CRUD.createUsersTable();
+        CRUD.createFlightsTable();
+        start();
     }
 
-    private static int chooseFlight() {
-        System.out.println("Choose a flight: 1. Flight A ($100), 2. Flight B ($90), 3. Flight C ($80), 4. Finish");
-        return scanner.nextInt();
-    }
-
-    private static Map.Entry<Flight, Integer> getFlightByChoice(int flightChoice, int totalPriceForTicket) {
-        Flight chosenFlight;
-        FlightFactory flightFactory = new FlightFactory();
-
-        switch (flightChoice) {
+    public static void start() {
+        System.out.println("--- Welcome to NQZ Airport! ---");
+        System.out.println("Please, choose who are you:" +
+                "\n1.Passenger" +
+                "\n2.Dispatcher" +
+                "\n3. Exit");
+        int choice = scanner.nextInt();
+        switch (choice) {
             case 1 -> {
-                chosenFlight = flightFactory.createFlight("Flight A");
-                totalPriceForTicket += 100;
+                passengerLogIn();
             }
             case 2 -> {
-                chosenFlight = flightFactory.createFlight("Flight B");
-                totalPriceForTicket += 90;
+                dispatcherLogIn();
             }
             case 3 -> {
-                chosenFlight = flightFactory.createFlight("Flight C");
-                totalPriceForTicket += 80;
-            }
-            default -> {
-                System.out.println("Invalid choice. Exiting...");
-                System.exit(1);
-                return null; // Unreachable, but needed for compilation
+                System.exit(0);
             }
         }
-
-        return new AbstractMap.SimpleEntry<>(chosenFlight, totalPriceForTicket);
     }
 
-
-
-
-    private static int chooseTicketType(String flightDescription, int totalPriceForTicket) {
-        System.out.println("Choose ticket type for " + flightDescription +
-                ": 1. Economy (+$0), 2. Business (+$100)");
-        int ticketType = scanner.nextInt();
-
-        switch (ticketType) {
-            case 1:
-                // No additional cost for Economy ticket
-                break;
-            case 2:
-                totalPriceForTicket += 100;
-                break;
-            default:
-                System.out.println("Invalid choice. Exiting...");
-                System.exit(1);
-                break; // Unreachable, but needed for compilation
-        }
-
-        return totalPriceForTicket;
-    }
-
-
-    private static AirlineTicket createTicket(TicketFactory ticketFactory) {
-        return ticketFactory.createTicket();
-    }
-
-    private static int addDecorators(AirlineTicket ticket, int totalPriceForTicket) {
-        while (true) {
-            System.out.println("Do you want to add an extra decorator? 1. Food (+$20), 2. Cinema (+$30), 3. Music (+$10), 4. No");
-            int decoratorChoice = scanner.nextInt();
-
-            if (decoratorChoice == 4) {
-                break; // Finish adding decorators
+    public static void dispatcherLogIn() {
+        System.out.println("--- DISPATCHER CONTROL SYSTEM ---");
+        System.out.println("--- PLEASE LOGIN OR REGISTER ---");
+        System.out.println("1. Login" +
+                "\n2.Register\n");
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1 -> {
+                String userName, password;
+                scanner.nextLine();
+                System.out.print("Your username: ");
+                userName = scanner.nextLine();
+                System.out.print("Your password: ");
+                password = scanner.nextLine();
+                CRUD.loginUser(userName, password);
+                dispatcherControl(userName);
             }
+            case 2 -> {
+                String userName, password;
+                scanner.nextLine(); // Consume newline character
+                System.out.print("Your username: ");
+                userName = scanner.nextLine();
+                System.out.print("Your password: ");
+                password = scanner.nextLine();
+                CRUD crud = new CRUD();
+                CRUD.createUser(userName, password);
+                dispatcherLogIn();
+            }
+        }
+    }
 
-            if (decoratorChoice >= 1 && decoratorChoice <= 3) {
-                ticket = addDecoratorByChoice(ticket, decoratorChoice);
-                totalPriceForTicket += getDecoratorPriceByChoice(decoratorChoice);
+    public static void dispatcherControl(String userName) {
+        System.out.println("--- Welcome back to work, " + userName + " ---");
+        System.out.println("Choose what you want to do: ");
+        System.out.println("1. Add Flight" +
+                "\n2. Check Existing Flights" +
+                "\n3. Exit");
+
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1 -> {
+                createFlight(userName);
+            }
+            case 2 -> {
+                showFlights(userName);
+                dispatcherControl(userName);
+            }
+            case 3 -> {
+                start();
+            }
+        }
+    }
+
+    public static void createFlight(String userName) {
+        scanner.nextLine();
+        System.out.println("Enter flight number: ");
+        String flightNumber = scanner.nextLine();
+
+        System.out.println("Enter departure location: ");
+        String departure = scanner.nextLine();
+
+        System.out.println("Enter destination: ");
+        String destination = scanner.nextLine();
+
+        System.out.println("Enter departure time: ");
+        String departureTime = scanner.nextLine();
+
+        infoSystem.createFlight(flightNumber, departure, destination, departureTime);
+        String flightDetails = "New flight: " + flightNumber + " " + departure + " " + destination + " " + departureTime;
+        flightUpdates.addFlight(flightDetails);
+        dispatcherControl(userName);
+    }
+
+    public static void showFlights(String userName) {
+        CRUD.readFlights();
+    }
+
+    public static void passengerLogIn() {
+        System.out.println("--- Welcome to the flight booking system! --- ");
+        System.out.println("Please enter your name:");
+        scanner.nextLine();
+        String passengerName = scanner.nextLine();
+
+        Passenger passenger = new Passenger(passengerName);
+        flightUpdates.registerObserver(passenger);
+        passengerControl(passengerName);
+    }
+
+    public static void passengerControl(String passengerName) {
+        System.out.println("What you want to do? " +
+                "\n1. Check Flights" +
+                "\n2. Purchase a ticket" +
+                "\n3. Exit");
+
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1 -> {
+                showFlights(passengerName);
+                passengerControl(passengerName);
+            }
+            case 2 -> {
+                buyTicket(passengerName);
+            }
+            case 3 ->{
+                start();
+            }
+        }
+    }
+
+    public static void buyTicket(String passengerName) {
+        System.out.println("Here is all Flights " + passengerName + ":");
+        showFlights(passengerName);
+        System.out.println("Which Flight you want to book? Enter ID:");
+        scanner.nextLine();
+        String flightNumber = scanner.nextLine();
+        System.out.println("Purchasing a flight..." +
+                "\nFull information about flight:");
+        CRUD.getFlightByNumber(flightNumber);
+        System.out.println("Which Ticket you want to buy?" +
+                "\n1. Economy class" +
+                "\n2. Business class");
+        int choice = scanner.nextInt();
+        AirlineTicket ticket = null;
+        switch (choice) {
+            case 1 -> {
+                EconomyTicketFactory economyTicketFactory = new EconomyTicketFactory();
+                ticket = economyTicketFactory.createTicket();
+                break;
+            }
+            case 2 -> {
+                BusinessTicketFactory businessTicketFactory = new BusinessTicketFactory();
+                ticket = businessTicketFactory.createTicket();
+                break;
+            }
+        }
+        System.out.println("Do you want to add something for your ticket?" +
+                "\n1. Yes" +
+                "\n2. No");
+        int decorate = scanner.nextInt();
+        if (decorate == 1) {
+            ticket = decorateTicket(ticket);
+        }
+        System.out.println(ticket.getDescription());
+        payForTicket(passengerName, ticket, flightNumber);
+    }
+    public static void payForTicket(String passengerName, AirlineTicket ticket, String flightNumber) {
+        double expectedAmount = ticket.getCost();
+        double totalAmount = 0.0;
+        boolean paymentCompleted = false;
+
+        while (!paymentCompleted) {
+            System.out.println("Total cost: " + expectedAmount);
+            System.out.println("How would you like to pay for the ticket?");
+            System.out.println("1. Card Payment");
+            System.out.println("2. Cash Payment");
+            System.out.println("3. Transfer Payment");
+            System.out.println("4. Combined Payment");
+
+            int paymentChoice = scanner.nextInt();
+            PaymentStrategy paymentStrategy = null;
+
+            if (paymentChoice >= 1 && paymentChoice <= 3) {
+                switch (paymentChoice) {
+                    case 1:
+                        paymentStrategy = new CardPayment();
+                        break;
+                    case 2:
+                        paymentStrategy = new CashPayment();
+                        break;
+                    case 3:
+                        paymentStrategy = new TransferPayment();
+                        break;
+                }
+
+                PaymentContext paymentContext = new PaymentContext();
+                paymentContext.setPaymentStrategy(paymentStrategy);
+
+                double amount = expectedAmount - totalAmount;
+                paymentContext.processPayment(amount);
+                totalAmount += amount;
+
+                if (totalAmount == expectedAmount) {
+                    paymentCompleted = true;
+                } else {
+                    System.out.println("Remaining amount to be paid: " + (expectedAmount - totalAmount));
+                }
+            } else if (paymentChoice == 4) {
+                CombinedPaymentAdapter combinedPayment = new CombinedPaymentAdapter();
+
+                System.out.println("Enter number of payment strategies you want to combine:");
+                int numOfStrategies = scanner.nextInt();
+
+                for (int i = 0; i < numOfStrategies; i++) {
+                    System.out.println("Enter payment type (1 for Card, 2 for Cash, 3 for Transfer):");
+                    int type = scanner.nextInt();
+                    PaymentStrategy strategy = null;
+                    double amount = 0.0;
+
+                    switch (type) {
+                        case 1:
+                            strategy = new CardPayment();
+                            break;
+                        case 2:
+                            strategy = new CashPayment();
+                            break;
+                        case 3:
+                            strategy = new TransferPayment();
+                            break;
+                    }
+
+                    System.out.println("Enter amount for this payment strategy:");
+                    amount = scanner.nextDouble();
+
+                    combinedPayment.addPaymentStrategy(strategy, amount);
+                    totalAmount += amount;
+                }
+
+                if (totalAmount == expectedAmount) {
+                    combinedPayment.pay(totalAmount);
+                    paymentCompleted = true;
+                } else {
+                    System.out.println("Total combined payment doesn't match the ticket cost. Retry.");
+                    totalAmount = 0.0;
+                }
             } else {
-                System.out.println("Invalid choice. Exiting...");
-                System.exit(1);
+                System.out.println("Invalid payment choice.");
             }
         }
-        return totalPriceForTicket;
+        System.out.println("Thanks for purchase, " + passengerName +
+                "\nYour ticket: ");
+        CRUD.getFlightByNumber(flightNumber);
+        passengerControl(passengerName);
     }
 
-    private static AirlineTicket addDecoratorByChoice(AirlineTicket ticket, int decoratorChoice) {
-        return switch (decoratorChoice) {
-            case 1 -> DecoratorApplier.applyFoodDecorator(ticket);
-            case 2 -> DecoratorApplier.applyCinemaDecorator(ticket);
-            case 3 -> DecoratorApplier.applyMusicDecorator(ticket);
-            default -> ticket; // Unreachable, but needed for compilation
-        };
-    }
 
-    private static int getDecoratorPriceByChoice(int decoratorChoice) {
-        return switch (decoratorChoice) {
-            case 1 -> 20;
-            case 2 -> 30;
-            case 3 -> 10;
-            default -> 0; // Unreachable, but needed for compilation
-        };
-    }
 
-    private static PaymentStrategy choosePaymentStrategy() {
-        System.out.println("Choose payment strategy: 1. Card, 2. Cash, 3. Transfer");
-        int paymentChoice = scanner.nextInt();
-
-        switch (paymentChoice) {
-            case 1 -> {
-                return new CardPayment();
-            }
-            case 2 -> {
-                return new CashPayment();
-            }
-            case 3 -> {
-                return new TransferPayment();
-            }
-            default -> {
-                System.out.println("Invalid choice. Using default payment strategy (Card).");
-                return new CardPayment();
+    public static AirlineTicket decorateTicket(AirlineTicket ticket) {
+        boolean decorating = true;
+        while (decorating) {
+            System.out.println("Choose what you want to add: " +
+                    "\n1. Food" +
+                    "\n2. Cinema" +
+                    "\n3. Music" +
+                    "\n4. Exit");
+            int decorationChoice = scanner.nextInt();
+            switch (decorationChoice) {
+                case 1:
+                    ticket = new FoodDecorator(ticket);
+                    break;
+                case 2:
+                    ticket = new CinemaDecorator(ticket);
+                    break;
+                case 3:
+                    ticket = new MusicDecorator(ticket);
+                    break;
+                case 4:
+                    decorating = false; // Exit the loop
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please choose again.");
             }
         }
+        return ticket;
     }
 }
 

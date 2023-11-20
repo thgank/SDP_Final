@@ -2,49 +2,35 @@ package Singleton;
 
 import Observer.FlightUpdates;
 import Observer.Observer;
+import SQL.CRUD;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FlightInformationSystem {
-    private static FlightInformationSystem instance;
-    private List<String> currentFlights;
-    private boolean updated;
+    private static volatile FlightInformationSystem instance;
 
     private FlightInformationSystem() {
-        currentFlights = new ArrayList<>();
-        updated = false;
     }
 
     public static FlightInformationSystem getInstance() {
         if (instance == null) {
-            instance = new FlightInformationSystem();
+            synchronized (FlightInformationSystem.class) {
+                if (instance == null) {
+                    instance = new FlightInformationSystem();
+                }
+            }
         }
         return instance;
     }
 
-    public void startMonitoringFlights(FlightUpdates flightUpdates) {
-        flightUpdates.registerObserver(new FlightObserver());
+    public void createFlight(String flightNumber, String departure, String destination, String departureTime) {
+        // Create the flight in the database using CRUD class
+        CRUD.createFlight(flightNumber, departure, destination, departureTime);
+
+        // Notify observers about the new flight created
+        FlightUpdates flightUpdates = new FlightUpdates();
+        flightUpdates.addFlight("Flight " + flightNumber + " from " + departure + " to " + destination + " at " + departureTime);
     }
 
-    public void showUpdatedFlights() {
-        if (!updated) {
-            showFlightInformation();
-            updated = true;
-        }
-    }
-
-    private class FlightObserver implements Observer {
-        @Override
-        public void update(String flightDetails) {
-            currentFlights.add(flightDetails);
-        }
-    }
-
-    private void showFlightInformation() {
-        System.out.println("Current Flights:");
-        for (String flight : currentFlights) {
-            System.out.println("- " + flight);
-        }
-    }
 }

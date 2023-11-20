@@ -1,4 +1,4 @@
-package Factory_and_Decorator.TicketFactory;
+package Factory_and_Decorator;
 
 public class FoodDecorator implements TicketDecorator {
     protected AirlineTicket decoratedTicket;
@@ -26,5 +26,10 @@ public class FoodDecorator implements TicketDecorator {
         } else {
             return baseDescription + ", food";
         }
+    }
+
+    @Override
+    public double getCost() {
+        return decoratedTicket.getCost()+10;
     }
 }

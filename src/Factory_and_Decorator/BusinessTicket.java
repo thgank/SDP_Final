@@ -1,4 +1,4 @@
-package Factory_and_Decorator.TicketFactory;
+package Factory_and_Decorator;
 
 public class BusinessTicket implements AirlineTicket{
 
@@ -14,5 +14,10 @@ public class BusinessTicket implements AirlineTicket{
     @Override
     public String getDescription() {
         return "Ticket Description: Business Ticket";
+    }
+
+    @Override
+    public double getCost() {
+        return 200;
     }
 }

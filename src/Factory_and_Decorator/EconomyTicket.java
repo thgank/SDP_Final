@@ -1,4 +1,4 @@
-package Factory_and_Decorator.TicketFactory;
+package Factory_and_Decorator;
 
 public class EconomyTicket implements AirlineTicket{
     @Override
@@ -13,5 +13,10 @@ public class EconomyTicket implements AirlineTicket{
     @Override
     public String getDescription() {
         return "Ticket Description: Economy Ticket";
+    }
+
+    @Override
+    public double getCost() {
+        return 100;
     }
 }
