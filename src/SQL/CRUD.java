@@ -2,9 +2,9 @@ package SQL;
 import java.sql.*;
 
 public class CRUD {
-    private static final String DB_URL = "jdbc:postgresql://localhost:5432/name_of_db";
+    private static final String DB_URL = "jdbc:postgresql://localhost:5432/sdp_final";
     private static final String USERNAME = "postgres";
-    private static final String PASSWORD = "password";
+    private static final String PASSWORD = "mercytop38";
 
     public static void createUsersTable() {
         try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD)) {

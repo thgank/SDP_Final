@@ -1,15 +1,9 @@
 import Factory_and_Decorator.*;
-import Factory_and_Decorator.TicketFactory.*;
 import Observer.Passenger;
 import Singleton.FlightInformationSystem;
 import Observer.FlightUpdates;
 import Strategy_and_Adapter.*;
 import SQL.CRUD;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.AbstractMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -170,12 +164,10 @@ public class Main {
             case 1 -> {
                 EconomyTicketFactory economyTicketFactory = new EconomyTicketFactory();
                 ticket = economyTicketFactory.createTicket();
-                break;
             }
             case 2 -> {
                 BusinessTicketFactory businessTicketFactory = new BusinessTicketFactory();
                 ticket = businessTicketFactory.createTicket();
-                break;
             }
         }
         System.out.println("Do you want to add something for your ticket?" +
@@ -226,8 +218,13 @@ public class Main {
 
                 if (totalAmount == expectedAmount) {
                     paymentCompleted = true;
-                } else {
+                } else if (totalAmount < expectedAmount) {
                     System.out.println("Remaining amount to be paid: " + (expectedAmount - totalAmount));
+                } else {
+                    // If paid amount exceeds expected cost, calculate and display change
+                    double change = totalAmount - expectedAmount;
+                    System.out.println("Paid amount exceeds the ticket cost. Your change is: " + change);
+                    paymentCompleted = true;
                 }
             } else if (paymentChoice == 4) {
                 CombinedPaymentAdapter combinedPayment = new CombinedPaymentAdapter();
@@ -259,13 +256,17 @@ public class Main {
                     combinedPayment.addPaymentStrategy(strategy, amount);
                     totalAmount += amount;
                 }
-
                 if (totalAmount == expectedAmount) {
                     combinedPayment.pay(totalAmount);
                     paymentCompleted = true;
-                } else {
+                } else if (totalAmount < expectedAmount) {
                     System.out.println("Total combined payment doesn't match the ticket cost. Retry.");
                     totalAmount = 0.0;
+                } else {
+                    // If paid amount exceeds expected cost, calculate and display change
+                    double change = totalAmount - expectedAmount;
+                    System.out.println("Paid amount exceeds the ticket cost. Your change is: " + change);
+                    paymentCompleted = true;
                 }
             } else {
                 System.out.println("Invalid payment choice.");
@@ -273,6 +274,7 @@ public class Main {
         }
         System.out.println("Thanks for purchase, " + passengerName +
                 "\nYour ticket: ");
+        System.out.println(ticket.getDescription());
         CRUD.getFlightByNumber(flightNumber);
         passengerControl(passengerName);
     }
