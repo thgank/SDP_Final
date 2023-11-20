@@ -7,7 +7,7 @@ import SQL.CRUD;
 import java.util.Scanner;
 
 public class Main {
-    private static FlightUpdates flightUpdates = new FlightUpdates();
+    private static final FlightUpdates flightUpdates = new FlightUpdates();
     static FlightInformationSystem infoSystem = FlightInformationSystem.getInstance();
     static Scanner scanner = new Scanner(System.in);
 
@@ -19,29 +19,25 @@ public class Main {
 
     public static void start() {
         System.out.println("--- Welcome to NQZ Airport! ---");
-        System.out.println("Please, choose who are you:" +
-                "\n1.Passenger" +
-                "\n2.Dispatcher" +
-                "\n3. Exit");
+        System.out.println("""
+                Please, choose who are you:
+                1. Passenger
+                2. Dispatcher
+                3. Exit""");
         int choice = scanner.nextInt();
         switch (choice) {
-            case 1 -> {
-                passengerLogIn();
-            }
-            case 2 -> {
-                dispatcherLogIn();
-            }
-            case 3 -> {
-                System.exit(0);
-            }
+            case 1 -> passengerLogIn();
+            case 2 -> dispatcherLogIn();
+            case 3 -> System.exit(0);
         }
     }
 
     public static void dispatcherLogIn() {
         System.out.println("--- DISPATCHER CONTROL SYSTEM ---");
         System.out.println("--- PLEASE LOGIN OR REGISTER ---");
-        System.out.println("1. Login" +
-                "\n2.Register\n");
+        System.out.println("""
+                1. Login
+                2. Register""");
         int choice = scanner.nextInt();
         switch (choice) {
             case 1 -> {
@@ -61,7 +57,6 @@ public class Main {
                 userName = scanner.nextLine();
                 System.out.print("Your password: ");
                 password = scanner.nextLine();
-                CRUD crud = new CRUD();
                 CRUD.createUser(userName, password);
                 dispatcherLogIn();
             }
@@ -71,25 +66,38 @@ public class Main {
     public static void dispatcherControl(String userName) {
         System.out.println("--- Welcome back to work, " + userName + " ---");
         System.out.println("Choose what you want to do: ");
-        System.out.println("1. Add Flight" +
-                "\n2. Check Existing Flights" +
-                "\n3. Exit");
+        System.out.println("""
+                1. Add Flight
+                2. Update Flight
+                3. Cancel Flight
+                4. Check Existing Flights
+                5. Notify about flight delay
+                6. Exit""");
 
         int choice = scanner.nextInt();
         switch (choice) {
-            case 1 -> {
-                createFlight(userName);
-            }
-            case 2 -> {
-                showFlights(userName);
+            case 1 -> createFlight(userName);
+            case 2 -> updateFlight(userName);
+            case 3 -> deleteFlight(userName);
+            case 4 -> {
+                showFlights();
                 dispatcherControl(userName);
             }
-            case 3 -> {
-                start();
-            }
+            case 5 -> delayNotify(userName);
+            case 6 -> start();
         }
     }
+    public static void delayNotify(String userName) {
+        System.out.println("Choose which flight is delayed: ");
+        CRUD.readFlights();
+        scanner.nextLine();
 
+        String choice = scanner.nextLine();
+        String flightDetails = CRUD.getFlightByNumber(choice);
+
+        flightUpdates.updateFlight(flightDetails);
+        dispatcherControl(userName);
+    }
     public static void createFlight(String userName) {
         scanner.nextLine();
         System.out.println("Enter flight number: ");
@@ -106,13 +114,45 @@ public class Main {
 
         infoSystem.createFlight(flightNumber, departure, destination, departureTime);
         String flightDetails = "New flight: " + flightNumber + " " + departure + " " + destination + " " + departureTime;
-        flightUpdates.addFlight(flightDetails);
+        flightUpdates.updateFlight(flightDetails);
         dispatcherControl(userName);
     }
-
-    public static void showFlights(String userName) {
+    public static void showFlights() {
         CRUD.readFlights();
     }
+    public static void updateFlight(String username){
+        CRUD.readFlights();
+        System.out.println("Enter the flight number to update:");
+        scanner.nextLine(); // Consume newline
+        String flightNumber = scanner.nextLine();
+
+        System.out.println("Enter the new departure:");
+        String newDeparture = scanner.nextLine();
+
+        System.out.println("Enter the new destination:");
+        String newDestination = scanner.nextLine();
+
+        System.out.println("Enter the new departure time:");
+        String newDepartureTime = scanner.nextLine();
+
+        CRUD.updateFlight(flightNumber, newDeparture, newDestination, newDepartureTime);
+        String update = "Flight was updated";
+        flightUpdates.updateFlight(update);
+        dispatcherControl(username);
+    }
+    public static void deleteFlight(String username) {
+        CRUD.readFlights();
+        System.out.println("Enter the flight number to delete:");
+        scanner.nextLine(); // Consume newline
+        String flightNumber = scanner.nextLine();
+
+        CRUD.deleteFlight(flightNumber);
+        String update = "Flight was deleted";
+        flightUpdates.updateFlight(update);
+        dispatcherControl(username);
+    }
+
+
 
     public static void passengerLogIn() {
         System.out.println("--- Welcome to the flight booking system! --- ");
@@ -126,38 +166,62 @@ public class Main {
     }
 
     public static void passengerControl(String passengerName) {
-        System.out.println("What you want to do? " +
-                "\n1. Check Flights" +
-                "\n2. Purchase a ticket" +
-                "\n3. Exit");
+        System.out.println("""
+                What you want to do?\s
+                1. Check Flights
+                2. Find a flight
+                3. Purchase a ticket
+                4. Exit""");
 
         int choice = scanner.nextInt();
         switch (choice) {
             case 1 -> {
-                showFlights(passengerName);
+                showFlights();
                 passengerControl(passengerName);
             }
-            case 2 -> {
-                buyTicket(passengerName);
+            case 2 ->{
+                findFlight(passengerName);
             }
-            case 3 ->{
-                start();
-            }
+            case 3 -> listFlights(passengerName);
+            case 4 -> start();
+        }
+    }
+    public static void findFlight(String passengerName) {
+        scanner.nextLine();
+        System.out.println("Enter Departure place:");
+        String departure = scanner.nextLine();
+
+        System.out.println("Enter Destination place: ");
+        String destination = scanner.nextLine();
+        CRUD.searchFlightsByDepartureAndDestination(departure, destination);
+        System.out.println("Which one you want to buy?" +
+                "\nOr just write 0 to exit");
+        String choice = scanner.nextLine();
+        if (choice.equals("0")) {
+            passengerControl(passengerName);
+        }
+        else{
+            buyTicket(passengerName, choice);
         }
     }
 
-    public static void buyTicket(String passengerName) {
+    public static void listFlights(String passengerName){
         System.out.println("Here is all Flights " + passengerName + ":");
-        showFlights(passengerName);
+        showFlights();
         System.out.println("Which Flight you want to book? Enter ID:");
         scanner.nextLine();
         String flightNumber = scanner.nextLine();
+        buyTicket(passengerName,flightNumber);
+    }
+
+    public static void buyTicket(String passengerName, String flightNumber) {
         System.out.println("Purchasing a flight..." +
                 "\nFull information about flight:");
         CRUD.getFlightByNumber(flightNumber);
-        System.out.println("Which Ticket you want to buy?" +
-                "\n1. Economy class" +
-                "\n2. Business class");
+        System.out.println("""
+                Which Ticket you want to buy?
+                1. Economy class
+                2. Business class""");
         int choice = scanner.nextInt();
         AirlineTicket ticket = null;
         switch (choice) {
@@ -170,13 +234,15 @@ public class Main {
                 ticket = businessTicketFactory.createTicket();
             }
         }
-        System.out.println("Do you want to add something for your ticket?" +
-                "\n1. Yes" +
-                "\n2. No");
+        System.out.println("""
+                Do you want to add something for your ticket?
+                1. Yes
+                2. No""");
         int decorate = scanner.nextInt();
         if (decorate == 1) {
             ticket = decorateTicket(ticket);
         }
+        assert ticket != null;
         System.out.println(ticket.getDescription());
         payForTicket(passengerName, ticket, flightNumber);
     }
@@ -197,17 +263,12 @@ public class Main {
             PaymentStrategy paymentStrategy = null;
 
             if (paymentChoice >= 1 && paymentChoice <= 3) {
-                switch (paymentChoice) {
-                    case 1:
-                        paymentStrategy = new CardPayment();
-                        break;
-                    case 2:
-                        paymentStrategy = new CashPayment();
-                        break;
-                    case 3:
-                        paymentStrategy = new TransferPayment();
-                        break;
-                }
+                paymentStrategy = switch (paymentChoice) {
+                    case 1 -> new CardPayment();
+                    case 2 -> new CashPayment();
+                    case 3 -> new TransferPayment();
+                    default -> paymentStrategy;
+                };
 
                 PaymentContext paymentContext = new PaymentContext();
                 paymentContext.setPaymentStrategy(paymentStrategy);
@@ -235,20 +296,15 @@ public class Main {
                 for (int i = 0; i < numOfStrategies; i++) {
                     System.out.println("Enter payment type (1 for Card, 2 for Cash, 3 for Transfer):");
                     int type = scanner.nextInt();
-                    PaymentStrategy strategy = null;
-                    double amount = 0.0;
+                    PaymentStrategy strategy;
+                    double amount;
 
-                    switch (type) {
-                        case 1:
-                            strategy = new CardPayment();
-                            break;
-                        case 2:
-                            strategy = new CashPayment();
-                            break;
-                        case 3:
-                            strategy = new TransferPayment();
-                            break;
-                    }
+                    strategy = switch (type) {
+                        case 1 -> new CardPayment();
+                        case 2 -> new CashPayment();
+                        case 3 -> new TransferPayment();
+                        default -> null;
+                    };
 
                     System.out.println("Enter amount for this payment strategy:");
                     amount = scanner.nextDouble();
@@ -284,11 +340,12 @@ public class Main {
     public static AirlineTicket decorateTicket(AirlineTicket ticket) {
         boolean decorating = true;
         while (decorating) {
-            System.out.println("Choose what you want to add: " +
-                    "\n1. Food" +
-                    "\n2. Cinema" +
-                    "\n3. Music" +
-                    "\n4. Exit");
+            System.out.println("""
+                    Choose what you want to add:\s
+                    1. Food
+                    2. Cinema
+                    3. Music
+                    4. Exit""");
             int decorationChoice = scanner.nextInt();
             switch (decorationChoice) {
                 case 1:

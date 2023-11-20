@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c87500fc-6774-4c70-9330-44da005aa2b1" name="Changes" comment="(^•ω•＾)">
+    <list default="true" id="c87500fc-6774-4c70-9330-44da005aa2b1" name="Changes" comment="lil fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Observer/FlightUpdates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Observer/FlightUpdates.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SQL/CRUD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQL/CRUD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SQL/CreateTable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Singleton/FlightInformationSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Singleton/FlightInformationSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Strategy_and_Adapter/CombinedPaymentAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Strategy_and_Adapter/CombinedPaymentAdapter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +98,7 @@
       <workItem from="1699546090164" duration="4170000" />
       <workItem from="1699800130821" duration="171000" />
       <workItem from="1700403763195" duration="9730000" />
+      <workItem from="1700495101191" duration="3121000" />
     </task>
     <task id="LOCAL-00001" summary="hehe">
       <created>1700416779592</created>
@@ -109,7 +114,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700419857916</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="lil fix">
+      <option name="closed" value="true" />
+      <created>1700493738258</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1700493738258</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,6 +143,7 @@
     <MESSAGE value="hehe" />
     <MESSAGE value="(^•ω•＾)" />
     <MESSAGE value="asan check" />
-    <option name="LAST_COMMIT_MESSAGE" value="asan check" />
+    <MESSAGE value="lil fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="lil fix" />
   </component>
 </project>

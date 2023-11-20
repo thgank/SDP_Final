@@ -3,13 +3,13 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class FlightUpdates implements Subject {
-    private List<Observer> observers;
+    private final List<Observer> observers;
 
     public FlightUpdates() {
         observers = new ArrayList<>();
     }
 
-    public void addFlight(String flightDetails) {
+    public void updateFlight(String flightDetails) {
         notifyObservers(flightDetails);
     }
 

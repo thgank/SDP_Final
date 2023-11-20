@@ -1,11 +1,7 @@
 package Singleton;
-
 import Observer.FlightUpdates;
-import Observer.Observer;
 import SQL.CRUD;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class FlightInformationSystem {
     private static volatile FlightInformationSystem instance;
@@ -30,7 +26,7 @@ public class FlightInformationSystem {
 
         // Notify observers about the new flight created
         FlightUpdates flightUpdates = new FlightUpdates();
-        flightUpdates.addFlight("Flight " + flightNumber + " from " + departure + " to " + destination + " at " + departureTime);
+        flightUpdates.updateFlight("Flight " + flightNumber + " from " + departure + " to " + destination + " at " + departureTime);
     }
 
 }

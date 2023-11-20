@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CombinedPaymentAdapter implements CombinedPaymentStrategy {
-    private Map<PaymentStrategy, Double> paymentStrategies;
+    private final Map<PaymentStrategy, Double> paymentStrategies;
     private double totalAmountPaid;
 
     public CombinedPaymentAdapter() {

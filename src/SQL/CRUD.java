@@ -2,9 +2,9 @@ package SQL;
 import java.sql.*;
 
 public class CRUD {
-    private static final String DB_URL = "jdbc:postgresql://localhost:5432/sdp_final";
+    private static final String DB_URL = "jdbc:postgresql://localhost:5432/db_name";
     private static final String USERNAME = "postgres";
-    private static final String PASSWORD = "mercytop38";
+    private static final String PASSWORD = "password";
 
     public static void createUsersTable() {
         try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD)) {
@@ -66,55 +66,6 @@ public class CRUD {
             System.out.println("Create user error: " + e.getMessage());
         }
     }
-
-    // Retrieve all users
-    public static void selectUsers() {
-        try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
-             Statement statement = conn.createStatement();
-             ResultSet resultSet = statement.executeQuery("SELECT * FROM users")) {
-            System.out.println("Users:");
-            while (resultSet.next()) {
-                String name = resultSet.getString("Name");
-                String password = resultSet.getString("Password");
-                System.out.println("Name: " + name + ", Password: " + password);
-            }
-        } catch (SQLException e) {
-            System.out.println("Select users error: " + e.getMessage());
-        }
-    }
-
-    // Update user's password
-    public static void updateUserPassword(String name, String newPassword) {
-        try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
-             PreparedStatement preparedStatement = conn.prepareStatement("UPDATE users SET Password = ? WHERE Name = ?")) {
-            preparedStatement.setString(1, newPassword);
-            preparedStatement.setString(2, name);
-            int rowsUpdated = preparedStatement.executeUpdate();
-            if (rowsUpdated > 0) {
-                System.out.println("Password for user " + name + " updated successfully");
-            } else {
-                System.out.println("User " + name + " not found");
-            }
-        } catch (SQLException e) {
-            System.out.println("Update user password error: " + e.getMessage());
-        }
-    }
-
-    // Delete a user
-    public static void deleteUser(String name) {
-        try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
-             PreparedStatement preparedStatement = conn.prepareStatement("DELETE FROM users WHERE Name = ?")) {
-            preparedStatement.setString(1, name);
-            int rowsDeleted = preparedStatement.executeUpdate();
-            if (rowsDeleted > 0) {
-                System.out.println("User " + name + " deleted successfully");
-            } else {
-                System.out.println("User " + name + " not found");
-            }
-        } catch (SQLException e) {
-            System.out.println("Delete user error: " + e.getMessage());
-        }
-    }
     public static void loginUser(String name, String password) {
         try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD)) {
             PreparedStatement checkStatement = conn.prepareStatement("SELECT * FROM users WHERE Name = ? AND Password = ?");
@@ -163,7 +114,71 @@ public class CRUD {
             System.out.println("Read flights error: " + e.getMessage());
         }
     }
-    public static void getFlightByNumber(String flightNumber) {
+    public static void searchFlightsByDepartureAndDestination(String departure, String destination) {
+        try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = conn.prepareStatement(
+                     "SELECT * FROM flights WHERE departure = ? AND destination = ?");
+        ) {
+            preparedStatement.setString(1, departure);
+            preparedStatement.setString(2, destination);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                System.out.println("Flights from " + departure + " to " + destination + ":");
+                while (resultSet.next()) {
+                    String flightNumber = resultSet.getString("flight_number");
+                    String dep = resultSet.getString("departure");
+                    String dest = resultSet.getString("destination");
+                    String departureTime = resultSet.getString("departure_time");
+
+                    System.out.println("Flight Number: " + flightNumber +
+                            ", Departure: " + dep +
+                            ", Destination: " + dest +
+                            ", Departure Time: " + departureTime);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Search flights error: " + e.getMessage());
+        }
+    }
+    public static void updateFlight(String flightNumber, String newDeparture, String newDestination, String newDepartureTime) {
+        try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD)) {
+            String query = "UPDATE flights SET departure = ?, destination = ?, departure_time = ? WHERE flight_number = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, newDeparture);
+            preparedStatement.setString(2, newDestination);
+            preparedStatement.setString(3, newDepartureTime);
+            preparedStatement.setString(4, flightNumber);
+
+            int updatedRows = preparedStatement.executeUpdate();
+
+            if (updatedRows > 0) {
+                System.out.println("Flight updated successfully!");
+            } else {
+                System.out.println("Flight with number " + flightNumber + " not found.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Update flight error: " + e.getMessage());
+        }
+    }
+
+    public static void deleteFlight(String flightNumber) {
+        try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD)) {
+            String query = "DELETE FROM flights WHERE flight_number = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, flightNumber);
+
+            int deletedRows = preparedStatement.executeUpdate();
+
+            if (deletedRows > 0) {
+                System.out.println("Flight deleted successfully!");
+            } else {
+                System.out.println("Flight with number " + flightNumber + " not found.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Delete flight error: " + e.getMessage());
+        }
+    }
+    public static String getFlightByNumber(String flightNumber) {
         try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD)) {
             String query = "SELECT * FROM flights WHERE flight_number = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(query);
@@ -183,5 +198,6 @@ public class CRUD {
         } catch (SQLException e) {
             System.out.println("Get flight by number error: " + e.getMessage());
         }
+        return flightNumber;
     }
 }
