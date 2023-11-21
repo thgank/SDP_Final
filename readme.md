@@ -541,6 +541,9 @@ Looking at the future, we think that we will create a GUI for out project, and a
 
 # References
 *Gamma, E., Helm, R., Johnson, R. E., & Vlissides, J. (1994). Design patterns: elements of reusable Object-Oriented software. http://www.ulb.tu-darmstadt.de/tocs/59840579.pdf*
+
 *Pree, W., & Sikora, H. (1994). Design patterns for Object-Oriented software Development. http://ci.nii.ac.jp/ncid/BA25355531*
+
 *Bhargava, A. (2016). Grokking Algorithms: An illustrated guide for programmers and other curious people. https://dl.acm.org/citation.cfm?id=3002869*
+
 *Momjian, B. (2000). PostgreSQL: Introduction and Concepts. https://index-of.es/Linux/Ebook-Pdf/Addison%20Wesley%20-%20PostgreSQL%20-%20Introduction%20and%20Concepts.pdf*
