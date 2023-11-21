@@ -15,6 +15,14 @@ We want to bring something new to the programming milestone. We want to create s
 
 ___
 
+### **UML Diagram**
+
+Here you can see UML Diagram of our Project:
+
+![UML](https://github.com/thgank/SDP_Final/blob/master/UML.png)
+
+___
+
 ### **Code Explanation**
 
 In this project, six patterns were used, including: **Singleton, Decorator, Strategy, Factor method, Observer, Adapter.**
