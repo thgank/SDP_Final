@@ -8,7 +8,7 @@ ___
 
 ### **Project Overview**
 
-As a final project, we decided to recreate the airport through the eyes of the dispatcher and passengers. We considered this topic very suitable from the point of view of implementing design patterns, since this is where all their beauty and capabilities can be realized. Also, we had been planning to create something similar for a very long time, but at that time we did not have the design patterns we have now.
+As a final project, we decided to create the airport through the eyes of the dispatcher and passengers. We considered this topic very suitable from the point of view of implementing design patterns, since this is where all their beauty and capabilities can be realized. Also, we had been planning to create something similar for a very long time, but at that time we did not have the design patterns we have now.
 
 As I said, the idea of this project is to recreate the airport ecosystem. Firstly, this is something of a sketch of our vision of how airports work. Secondly, this is a rather interesting and extraordinary topic, because writing all the necessary classes and methods will take a lot of time.
 
