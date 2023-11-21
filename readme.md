@@ -1,5 +1,8 @@
+<img src="https://static.tildacdn.com/tild6532-6139-4562-b765-363163626437/aitu-logo_white.png" alt="aitulogo" width="300" height="150">
+
 # SE-2224
 ## Serikov Nursultan and Assanali Rymgali
+## Teaching Assistant: Arailym Bakenova 
 ## Documentation of Software Design Pattern’s Final Project
 ___
 
